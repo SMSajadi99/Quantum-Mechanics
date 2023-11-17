@@ -104,21 +104,21 @@ disp(positive_intersection_cot);
 
 
 % Perform operations on positive_intersection_tan
-tan_col1 = ((positive_intersection_tan(:, 1)).^ 2 * H ^ 2) / (2 * M * (1.602 * 10 ^ -19));
-tan_col2 = (((positive_intersection_tan(:, 2)).^ 2 * H ^ 2) / (2 * M * (1.602 * 10 ^ -19)) - U0) * -1;
+tan_col1 = ((positive_intersection_tan(:, 1) / L).^ 2 * H ^ 2) / (2 * M * (1.602 * 10 ^ -19));
+tan_col2 = ((((positive_intersection_tan(:, 2)) / L).^ 2 * H ^ 2) / (2 * M * (1.602 * 10 ^ -19)) - U0) * -1;
 Energy_positive_intersection_tan = [tan_col1, tan_col2];
 
 % Perform operations on positive_intersection_cot
-cot_col1 = ((positive_intersection_cot(:, 1)).^2 * H^2) / (2 * M * (1.602 * 10 ^ -19));
-cot_col2 = (((positive_intersection_cot(:, 2)).^2 * H^2) / (2 * M * (1.602 * 10 ^ -19)) - U0) * -1;
+cot_col1 = ((positive_intersection_cot(:, 1) / L).^2 * H^2) / (2 * M * (1.602 * 10 ^ -19));
+cot_col2 = (((positive_intersection_cot(:, 2) / L).^2 * H^2) / (2 * M * (1.602 * 10 ^ -19)) - U0) * -1;
 Energy_positive_intersection_cot = [cot_col1, cot_col2];
 
 % Display energy 
 disp('Energy Intersection points with y = x*tan(x) by e.v:');
-disp(Energy_positive_intersection_tan / (1.602*10^-19));
+disp(Energy_positive_intersection_tan);
 
 disp('Energy Intersection points with y = -x*cot(x) by e.v:');
-disp(Energy_positive_intersection_cot / (1.602*10^-19));
+disp(Energy_positive_intersection_cot);
 
 % Count the number of points for tangent and cotangent
 num_points_tan = size(positive_intersection_tan, 1);
