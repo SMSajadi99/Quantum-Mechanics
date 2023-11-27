@@ -115,10 +115,10 @@ Energy_positive_intersection_cot = [cot_col1, cot_col2];
 
 % Display energy 
 disp('Energy Intersection points with y = x*tan(x) by e.v:');
-disp(Energy_positive_intersection_tan);
+disp(Energy_positive_intersection_tan(:,1));
 
 disp('Energy Intersection points with y = -x*cot(x) by e.v:');
-disp(Energy_positive_intersection_cot);
+disp(Energy_positive_intersection_cot(:,1));
 
 % Count the number of points for tangent and cotangent
 num_points_tan = size(positive_intersection_tan, 1);
@@ -181,9 +181,11 @@ for i = 1 : (row_positive_intersection_tan + row_positive_intersection_cot)
             % Second interval: L to 2*L
             if x(j) > L && x(j) <= 2*L
                 if sin(K * L) > 0
-                    y(j) = exp(-k * (x(j) - 3 * L / 4));
+                    c = sin(K * L) / exp(-k * L);
+                    y(j) = c * exp(-k * x(j));
                 else
-                    y(j) = -exp(-k * (x(j) - 3 * L / 4));
+                    c = -sin(K * L) / exp(-k * L);
+                    y(j) = -c * exp(-k * x(j));
                 end
             end
             
@@ -195,9 +197,11 @@ for i = 1 : (row_positive_intersection_tan + row_positive_intersection_cot)
             % Fourth interval: -L to -2*L
             if x(j) >= -2*L && x(j) < -L
                 if sin(K * (-L)) > 0
-                    y(j) = exp(k * (x(j) + 3 * L / 4));
+                    c = sin(K * -L) / exp(k * -L);
+                    y(j) = c * exp(k * x(j));
                 else
-                    y(j) = -exp(k * (x(j) + 3 * L / 4));
+                    c = -sin(K * -L) / exp(k * -L);
+                    y(j) = -c * exp(k * x(j));
                 end
             end
         end
@@ -217,9 +221,11 @@ for i = 1 : (row_positive_intersection_tan + row_positive_intersection_cot)
             % Second interval: L to 2*L
             if x(j) > L && x(j) <= 2*L
                 if cos(K * L) > 0
-                    y(j) = exp(-k * (x(j) - 3 * L / 4));
+                    c = cos(K * L) / exp(-k * L);
+                    y(j) = c * exp(-k * x(j));
                 else
-                    y(j) = -exp(-k * (x(j) - 3 * L / 4));
+                    c = -cos(K * L) / exp(-k * L);
+                    y(j) = -c * exp(-k * x(j));
                 end
             end
             
@@ -231,13 +237,15 @@ for i = 1 : (row_positive_intersection_tan + row_positive_intersection_cot)
             % Fourth interval: -L to -2*L
             if x(j) >= -2*L && x(j) < -L
                 if cos(K * (-L)) > 0
-                    y(j) = exp(k * (x(j) + 3 * L / 4));
+                    c = cos(K * -L) / exp(k * -L);
+                    y(j) = c * exp(k * x(j));
                 else
-                    y(j) = -exp(k * (x(j) + 3 * L / 4));
+                    c = -cos(K * -L) / exp(k * -L);
+                    y(j) = -c * exp(k * x(j));
                 end
             end
         end
-              
+
     end
     
 
